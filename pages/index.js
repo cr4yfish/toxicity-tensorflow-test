@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Container, Input, Card, Button, Badge, Collapse, Progress, Text, Spacer, Textarea } from "@nextui-org/react";
+import { Container, Input, Card, Button, Badge, Collapse, Progress, Text, Spacer, Textarea, Loading } from "@nextui-org/react";
 import * as React from "react";
 import Link from "next/link"
 
@@ -19,13 +19,10 @@ export default function Home() {
     threat: {state: false, label: "threat"},
     toxicity: {state: false, label: "toxicity"},
   });
-
-  React.useEffect(() => {
-    console.log(states)
-  }, [states]);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const classify = async () => {
-    console.log("New classify request", sentence);
+    setIsLoading(true);
     try {
       const res = await fetch("/api/classify", { 
         method: "POST",
@@ -48,6 +45,7 @@ export default function Home() {
       });
 
     } catch (e) { console.log(e);}
+    setIsLoading(false);
   }
 
   return (
@@ -72,7 +70,7 @@ export default function Home() {
 
         <Textarea status="secondary" label="Sentence" placeholder='Some Text containing things' value={sentence} onChange={(e) => setSentence(e.target.value)} />
         
-        <Button style={{ marginTop: 10 }} flat onClick={() => sentence.length != 0 ? classify() : null}>Classify</Button>
+        <Button disabled={isLoading} style={{ marginTop: 10 }} flat onClick={() => sentence.length != 0 ? classify() : null}>{!isLoading ? "Classify" : <Loading size="xs" />}</Button>
         </Container>
 
         {Object.keys(results).map(index => (
