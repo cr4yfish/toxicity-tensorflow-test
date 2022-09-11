@@ -60,7 +60,8 @@ export default function Home() {
 
       <Container>
 
-        <Text h1>Insult Checker</Text>
+        <Text h1 style={{ marginBottom: 2 }}>Insult Checker</Text>
+        <Text p>Not sure wether it&apos;s okay to say something? Don&apos;t worry anymore! Just paste it in here and find out!</Text>
         <Link href="https://github.com/cr4yfish/toxicity-tensorflow-test">
           <a><Button style={{ margin: 0, width: "100%" }} auto color="secondary" ghost icon={<FaGithub />}>Source</Button></a>
         </Link>
