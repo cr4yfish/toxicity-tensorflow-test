@@ -61,7 +61,7 @@ export default function Home() {
       <Container>
 
         <Text h1>Insult Checker</Text>
-        <Link href="https://github.com/tensorflow/tfjs-models/tree/master/toxicity">
+        <Link href="https://github.com/cr4yfish/toxicity-tensorflow-test">
           <a><Button style={{ margin: 0, width: "100%" }} auto color="secondary" ghost icon={<FaGithub />}>Source</Button></a>
         </Link>
   
